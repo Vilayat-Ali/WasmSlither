@@ -7,3 +7,4 @@ wasm-pack.log
 yarn.lock
 package-lock.json
 node_modules
+./web/styles/dist.css
