@@ -1,2 +1,3 @@
 cargo b
 yarn build
+wasm-pack build --target web --out-name snake --out-dir ./web/static
