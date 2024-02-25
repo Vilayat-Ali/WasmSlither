@@ -12,13 +12,16 @@
 </head>
 
 <body>
+    <h1 id="num"></h1>
 
     <!-- Scripts -->
     <script type="module">
         import init from "./static/snake.js";
 
         async function run() {
-            await init();
+            const wasm = await init();
+
+            // write game logic here
         }
 
         run();
