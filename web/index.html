@@ -3,96 +3,134 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wasm-Slither</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="./styles/dist.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- CSS -->
+    <title>Retro Snake Game - Rust + WebAssembly + Tailwind CSS</title>
+
+    <meta name="description"
+        content="A retro-style Snake game created using Rust + WebAssembly and styled with Tailwind CSS.">
+    <meta name="author" content="Syed Vilayat Ali Rizvi (vilayatcodemysite@gmail.com)">
+    <meta name="keywords" content="retro, gaming, Rust, WebAssembly, Tailwind CSS, Snake game">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-website-url.com">
+    <meta property="og:title" content="Retro Snake Game - Rust + WebAssembly + Tailwind CSS">
+    <meta property="og:description"
+        content="A retro-style Snake game created using Rust + WebAssembly and styled with Tailwind CSS.">
+    <meta property="og:image" content="https://your-website-url.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-website-url.com">
+    <meta property="twitter:title" content="Retro Snake Game - Rust + WebAssembly + Tailwind CSS">
+    <meta property="twitter:description"
+        content="A retro-style Snake game created using Rust + WebAssembly and styled with Tailwind CSS.">
+    <meta property="twitter:image" content="https://your-website-url.com/twitter-image.jpg">
+
+    <!-- Include Tailwind CSS -->
+    <link href="./styles/dist.css" rel="stylesheet">
+
+    <style>
+        #game-area {
+            display: grid;
+            grid-template-columns: repeat(56, 1fr);
+            gap: 1px;
+            padding: 20px;
+        }
+    </style>
 </head>
 
-<body>
+<body class="w-[100vw] h-[100vh] overflow-hidden">
     <!-- Navbar -->
-    <nav class="w-[100vw] h-[8vh] px-[2vw] flex flex-row justify-between items-center bg-white shadow">
-        <!-- Logo -->
-        <div class="w-[3vw]">
-            <img class="w-[inherit]" src="./assets/logo.png" alt="slither-logo" />
+    <nav class="bg-gray-800 p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="./assets/logo.png" alt="wasm-slither-logo Logo" class="h-8 w-8 mr-2">
+            <span class="text-white font-semibold">wasm slither</span>
         </div>
-        <!-- Logo -->
-
-        <!-- Link Buttons -->
-        <div class="w-[20vw] flex flex-row justify-between items-center">
-            <div class="bg-white rounded-lg shadow-lg px-4 py-2">
-                <div class="flex items-center">
-                    <span class="text-gray-600"><span id="count"></span>
-                        <span class="text-yellow-500">
-                            <i class="fas fa-star"></i>
-                        </span>
-                    </span>
-                    <span id="starCount" class="text-gray-800 font-semibold ml-1"></span>
-                    &nbsp;@&nbsp;
-                    <svg class="h-6 w-6 mr-1 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.86 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.67c-2.79.6-3.37-1.34-3.37-1.34-.46-1.16-1.13-1.47-1.13-1.47-.92-.63.07-.62.07-.62 1.02.07 1.56 1.05 1.56 1.05.91 1.56 2.39 1.11 2.98.85.09-.66.35-1.11.64-1.37-2.24-.25-4.6-1.12-4.6-4.98 0-1.1.39-2 1.03-2.71-.1-.26-.45-1.28.1-2.67 0 0 .85-.27 2.78 1.03a9.54 9.54 0 012.5-.34c.85.01 1.71.11 2.5.34 1.93-1.3 2.78-1.03 2.78-1.03.55 1.39.2 2.41.1 2.67.64.71 1.03 1.61 1.03 2.71 0 3.87-2.37 4.73-4.61 4.98.36.31.68.93.68 1.88v2.79c0 .26.18.58.69.48A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z" />
-                    </svg>
-                </div>
+        <div class="flex items-center">
+            <div class="mr-4 flex items-center text-white">
+                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                <span id="github-stars">0</span>
             </div>
-
-            <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener noreferrer"
-                class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center">
-                <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.86 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.67c-2.79.6-3.37-1.34-3.37-1.34-.46-1.16-1.13-1.47-1.13-1.47-.92-.63.07-.62.07-.62 1.02.07 1.56 1.05 1.56 1.05.91 1.56 2.39 1.11 2.98.85.09-.66.35-1.11.64-1.37-2.24-.25-4.6-1.12-4.6-4.98 0-1.1.39-2 1.03-2.71-.1-.26-.45-1.28.1-2.67 0 0 .85-.27 2.78 1.03a9.54 9.54 0 012.5-.34c.85.01 1.71.11 2.5.34 1.93-1.3 2.78-1.03 2.78-1.03.55 1.39.2 2.41.1 2.67.64.71 1.03 1.61 1.03 2.71 0 3.87-2.37 4.73-4.61 4.98.36.31.68.93.68 1.88v2.79c0 .26.18.58.69.48A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z" />
-                </svg>
-                View on GitHub
+            <a href="#" class="mr-4 bg-black hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
+                <i class="fab fa-github mr-2"></i>
+                Github
             </a>
         </div>
-        <!-- Link Buttons -->
     </nav>
-    <!-- Navbar -->
 
-    <main class="flex flex-row bg-red-200">
+    <!-- Main Content -->
+    <div class="flex flex-col md:flex-row justify-around md:justify-around md:items-baseline mt-4 mx-4">
+        <!-- Game Area -->
+        <div class="flex flex-col items-center">
+            <div id="game-area" class="grid grid-cols-13 gap-1"></div>
+        </div>
 
-    </main>
+        <!-- Game Scores and Metadata -->
+        <div class="flex flex-col items-center justify-center gap-2">
+            <!-- SNAKE META DATA -->
+            <div class="w-[20vw]">
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h2 class="text-white text-lg font-semibold mb-2">Game Stats</h2>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-white">Current Score:</span>
+                        <span id="current-score" class="text-white">0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-white">High Score:</span>
+                        <span id="high-score" class="text-white">0</span>
+                    </div>
+                    <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
+                        Enable Peek Mode
+                    </button>
+                    <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
+                        Export Snake State
+                    </button>
+                </div>
+            </div>
+            <!-- SNAKE META DATA -->
 
-    <!-- Footer -->
-    <div class="w-[100vw] h-[3vw] bg-black text-white flex flex-row justify-center items-center">
-        <div>
-            Wasm-Slither (c) - 2019 - Present. Made with ❤️ by <a href="https://www.github.com/vilayat-ali">Vilayat</a>
+            <!-- GAME SCORE -->
+            <div class="w-[20vw] mt-4 shadow">
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h2 class="text-white text-lg font-semibold mb-2">Game Stats</h2>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-white">Current Score:</span>
+                        <span id="current-score" class="text-white">0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-white">High Score:</span>
+                        <span id="high-score" class="text-white">0</span>
+                    </div>
+                    <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
+                        Start Game
+                    </button>
+                </div>
+            </div>
+            <!-- GAME SCORE -->
         </div>
     </div>
-    <!-- Footer -->
 
-    <!-- Scripts -->
+    <!-- Include FontAwesome icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <!-- JavaScript for generating the grid -->
     <script>
-        const repoUrl = "https://api.github.com/repos/Vilayat-Ali/WasmSlither";
-        const starCountEl = document.querySelector('#count');
+        const grid = document.getElementById('game-area');
+        const rows = 33; // Number of rows
+        const cols = 56; // Number of columns
 
-        fetch(repoUrl).then(res => res.json())
-            .then(data => {
-                const starCount = data.stargazers_count;
-                starCountEl.innerHTML = starCount;
-            })
-            .catch(err => starCountEl.innerHTML = "NA")
-    </script>
-    <!-- Scripts -->
-
-    <!-- Web Assembly Runner -->
-    <script type="module">
-        import init from "./static/snake.js";
-
-        async function run() {
-            const wasm = await init();
-
-            // write game logic here
+        for (let row_no = 0; row_no < rows; row_no++) {
+            for (let col_no = 0; col_no < cols; col_no++) {
+                const cell = document.createElement('div');
+                cell.className = 'h-6 w-6 bg-gray-700 border border-gray-800 rounded-sm shadow';
+                cell.id = `cell-${row_no}-${col_no}`;
+                grid.appendChild(cell);
+            }
         }
-
-        run();
     </script>
-
-    <script src="./scripts/app.js"></script>
-    <!-- Web Assembly Runner -->
 </body>
 
 </html>

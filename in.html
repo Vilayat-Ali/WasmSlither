@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <!-- Link to Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the grid */
+        #game-grid {
+            display: grid;
+            grid-template-columns: repeat(40, 1fr);
+            gap: 1px;
+            padding: 20px;
+        }
+
+        .grid-cell {
+            padding-bottom: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-grid"></div>
+
+    <!-- JavaScript to generate the grid -->
+    <script>
+        const gameGrid = document.getElementById('game-grid');
+
+        // Generate 100x100 grid
+        for (let i = 0; i < 10000; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            gameGrid.appendChild(cell);
+        }
+    </script>
+</body>
+
+</html>
