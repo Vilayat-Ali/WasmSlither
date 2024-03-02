@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Retro Snake Game - Rust + WebAssembly + Tailwind CSS</title>
+    <title>WASM Slither - Rust + WebAssembly + Tailwind CSS</title>
 
     <meta name="description"
         content="A retro-style Snake game created using Rust + WebAssembly and styled with Tailwind CSS.">
@@ -140,6 +140,19 @@
                 starCountCard.innerHTML = data.stargazers_count;
             })
             .catch(error => console.error(error));
+    </script>
+
+    <script type="module">
+        import init, { generate_random_points, Snake } from "./static/snake.js";
+
+        init()
+            .then((wasm) => {
+                const snake = new Snake();
+            })
+            .catch((err) => {
+                console.error(err);
+                alert('Failed to load Web Assembly!')
+            });
     </script>
 </body>
 

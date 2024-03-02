@@ -148,6 +148,20 @@ export class Coord {
     set y(arg0) {
         wasm.__wbg_set_coord_y(this.__wbg_ptr, arg0);
     }
+    /**
+    * @returns {number}
+    */
+    get get_x() {
+        const ret = wasm.coord_get_x(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+    * @returns {number}
+    */
+    get get_y() {
+        const ret = wasm.coord_get_y(this.__wbg_ptr);
+        return ret >>> 0;
+    }
 }
 
 const FoodFinalization = (typeof FinalizationRegistry === 'undefined')

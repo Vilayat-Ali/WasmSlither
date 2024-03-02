@@ -20,6 +20,12 @@ export class Coord {
   free(): void;
 /**
 */
+  readonly get_x: number;
+/**
+*/
+  readonly get_y: number;
+/**
+*/
   x: number;
 /**
 */
@@ -111,6 +117,14 @@ export interface InitOutput {
   readonly snake_get_snake_body: (a: number, b: number) => void;
   readonly __wbg_set_snake_size: (a: number, b: number) => void;
   readonly __wbg_get_snake_size: (a: number) => number;
+  readonly __wbg_coord_free: (a: number) => void;
+  readonly __wbg_get_coord_x: (a: number) => number;
+  readonly __wbg_set_coord_x: (a: number, b: number) => void;
+  readonly __wbg_get_coord_y: (a: number) => number;
+  readonly __wbg_set_coord_y: (a: number, b: number) => void;
+  readonly coord_get_x: (a: number) => number;
+  readonly coord_get_y: (a: number) => number;
+  readonly generate_random_points: (a: number, b: number) => number;
   readonly __wbg_food_free: (a: number) => void;
   readonly __wbg_get_food_x: (a: number) => number;
   readonly __wbg_set_food_x: (a: number, b: number) => void;
@@ -120,12 +134,6 @@ export interface InitOutput {
   readonly foodspawner_new: (a: number, b: number) => number;
   readonly foodspawner_spawn: (a: number) => void;
   readonly foodspawner_eat_food: (a: number, b: number, c: number) => void;
-  readonly __wbg_coord_free: (a: number) => void;
-  readonly __wbg_get_coord_x: (a: number) => number;
-  readonly __wbg_set_coord_x: (a: number, b: number) => void;
-  readonly __wbg_get_coord_y: (a: number) => number;
-  readonly __wbg_set_coord_y: (a: number, b: number) => void;
-  readonly generate_random_points: (a: number, b: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
