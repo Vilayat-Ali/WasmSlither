@@ -1,0 +1,17 @@
+{
+  "name": "wasm-slither",
+  "collaborators": [
+    "vilayat-ali <vilayatcodemysite@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "snake_bg.wasm",
+    "snake.js",
+    "snake.d.ts"
+  ],
+  "module": "snake.js",
+  "types": "snake.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
