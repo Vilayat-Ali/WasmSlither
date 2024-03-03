@@ -115,45 +115,6 @@
 
     <!-- Include FontAwesome icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-
-    <!-- JavaScript for generating the grid -->
-    <script>
-        const grid = document.getElementById('game-area');
-        const rows = 33; // Number of rows
-        const cols = 56; // Number of columns
-
-        for (let row_no = 0; row_no < rows; row_no++) {
-            for (let col_no = 0; col_no < cols; col_no++) {
-                const cell = document.createElement('div');
-                cell.className = 'h-6 w-6 bg-gray-700 border border-gray-800 rounded-sm shadow';
-                cell.id = `cell-${row_no}-${col_no}`;
-                grid.appendChild(cell);
-            }
-        }
-    </script>
-
-    <script>
-        const starCountCard = document.querySelector('#github-stars');
-        fetch(`https://api.github.com/repos/vilayat-ali/wasmslither`)
-            .then(response => response.json())
-            .then(data => {
-                starCountCard.innerHTML = data.stargazers_count;
-            })
-            .catch(error => console.error(error));
-    </script>
-
-    <script type="module">
-        import init, { generate_random_points, Snake } from "./static/snake.js";
-
-        init()
-            .then((wasm) => {
-                const snake = new Snake();
-            })
-            .catch((err) => {
-                console.error(err);
-                alert('Failed to load Web Assembly!')
-            });
-    </script>
 </body>
 
 </html>

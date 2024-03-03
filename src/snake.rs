@@ -1,5 +1,5 @@
 use wasm_bindgen::prelude::*;
-use super::generate_random_points;
+use super::utils::generate_random_points;
 
 #[wasm_bindgen]
 #[derive(Debug, Clone)]
@@ -35,7 +35,7 @@ impl Node {
 } 
 
 #[wasm_bindgen]
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Snake {
     pub size: usize,
     body: Option<Box<Node>>
@@ -45,10 +45,10 @@ pub struct Snake {
 impl Snake {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
-        let coord = generate_random_points(33, 56);
+        let (x, y) = generate_random_points();
         Self {
             size: 1,
-            body: Some(Box::new(Node::new(coord.x, coord.y, Direction::UP)))
+            body: Some(Box::new(Node::new(x, y, Direction::UP)))
         }
     }
 
@@ -105,3 +105,4 @@ impl Snake {
         vec
     }
 }
+
