@@ -115,6 +115,25 @@
 
     <!-- Include FontAwesome icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <!-- Fetching Github Stats -->
+    <script defer src="./scripts/data.js"></script>
+
+    <!-- Web Assembly Run-->
+    <script type="module">
+        import init, { Game } from "./static/snake.js";
+
+        async function run() {
+            await init();
+
+            const game = new Game();
+            game.play();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            run();
+        })
+    </script>
 </body>
 
 </html>
