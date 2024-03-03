@@ -5,15 +5,9 @@
   "author": "Syed Vilayat Ali Rizvi",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn tailwindcss -i ./web/styles/tailwind.css -c ./tailwind.config.js -o ./web/styles/dist.css --watch",
-    "build": "yarn tailwindcss -i ./web/styles/tailwind.css -c ./tailwind.config.js -o ./web/styles/dist.css --minify",
     "prepare": "husky"
   },
   "dependencies": {
-    "husky": "^9.0.11",
-    "tailwindcss": "^3.4.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "husky": "^9.0.11"
   }
 }

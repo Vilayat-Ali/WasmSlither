@@ -1,4 +1,3 @@
 cargo clippy
 cargo b --release
 ./build.sh
-yarn build
