@@ -121,10 +121,25 @@
 
     <!-- Web Assembly Run-->
     <script type="module">
-        import init, { Game } from "./static/snake.js";
+        import init, { Game, Snake } from "./static/snake.js";
 
         async function run() {
             await init();
+
+            const snakey = new Snake();
+            snakey.grow_snake();
+            snakey.grow_snake();
+            snakey.grow_snake();
+            snakey.grow_snake();
+            snakey.grow_snake();
+
+            for (const node of snakey.get_snake_body()) {
+                console.log({
+                    x: node.coord.x,
+                    y: node.coord.y,
+                    direction: node.direction
+                })
+            }
 
             const game = new Game();
             game.play();

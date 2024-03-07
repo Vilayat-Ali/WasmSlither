@@ -494,6 +494,14 @@ export class Node {
         this.__wbg_ptr = ret >>> 0;
         return this;
     }
+    /**
+    * @param {Direction} direction
+    * @returns {Node}
+    */
+    static random(direction) {
+        const ret = wasm.node_random(direction);
+        return Node.__wrap(ret);
+    }
 }
 
 const SnakeFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -533,6 +541,11 @@ export class Snake {
         const ret = wasm.snake_new();
         this.__wbg_ptr = ret >>> 0;
         return this;
+    }
+    /**
+    */
+    grow_snake() {
+        wasm.snake_grow_snake(this.__wbg_ptr);
     }
     /**
     * @returns {(Node)[]}
@@ -765,7 +778,7 @@ function __wbg_get_imports() {
         const ret = wasm.memory;
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper85 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper59 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 3, __wbg_adapter_22);
         return addHeapObject(ret);
     };

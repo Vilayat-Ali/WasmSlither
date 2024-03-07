@@ -61,6 +61,11 @@ export class Node {
 */
   constructor(x: number, y: number, direction: Direction);
 /**
+* @param {Direction} direction
+* @returns {Node}
+*/
+  static random(direction: Direction): Node;
+/**
 */
   coord: Coord;
 /**
@@ -75,6 +80,9 @@ export class Snake {
 */
   constructor();
 /**
+*/
+  grow_snake(): void;
+/**
 * @returns {(Node)[]}
 */
   get_snake_body(): (Node)[];
@@ -87,17 +95,6 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly __wbg_node_free: (a: number) => void;
-  readonly __wbg_get_node_coord: (a: number) => number;
-  readonly __wbg_set_node_coord: (a: number, b: number) => void;
-  readonly __wbg_get_node_direction: (a: number) => number;
-  readonly __wbg_set_node_direction: (a: number, b: number) => void;
-  readonly node_new: (a: number, b: number, c: number) => number;
-  readonly __wbg_snake_free: (a: number) => void;
-  readonly __wbg_get_snake_size: (a: number) => number;
-  readonly __wbg_set_snake_size: (a: number, b: number) => void;
-  readonly snake_new: () => number;
-  readonly snake_get_snake_body: (a: number, b: number) => void;
   readonly __wbg_game_free: (a: number) => void;
   readonly __wbg_get_game_is_running: (a: number) => number;
   readonly __wbg_set_game_is_running: (a: number, b: number) => void;
@@ -116,6 +113,19 @@ export interface InitOutput {
   readonly __wbg_set_coord_x: (a: number, b: number) => void;
   readonly __wbg_get_coord_y: (a: number) => number;
   readonly __wbg_set_coord_y: (a: number, b: number) => void;
+  readonly __wbg_node_free: (a: number) => void;
+  readonly __wbg_get_node_coord: (a: number) => number;
+  readonly __wbg_set_node_coord: (a: number, b: number) => void;
+  readonly __wbg_get_node_direction: (a: number) => number;
+  readonly __wbg_set_node_direction: (a: number, b: number) => void;
+  readonly node_new: (a: number, b: number, c: number) => number;
+  readonly node_random: (a: number) => number;
+  readonly __wbg_snake_free: (a: number) => void;
+  readonly __wbg_get_snake_size: (a: number) => number;
+  readonly __wbg_set_snake_size: (a: number, b: number) => void;
+  readonly snake_new: () => number;
+  readonly snake_grow_snake: (a: number) => void;
+  readonly snake_get_snake_body: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;

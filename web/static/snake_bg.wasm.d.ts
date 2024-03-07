@@ -1,17 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
-export function __wbg_node_free(a: number): void;
-export function __wbg_get_node_coord(a: number): number;
-export function __wbg_set_node_coord(a: number, b: number): void;
-export function __wbg_get_node_direction(a: number): number;
-export function __wbg_set_node_direction(a: number, b: number): void;
-export function node_new(a: number, b: number, c: number): number;
-export function __wbg_snake_free(a: number): void;
-export function __wbg_get_snake_size(a: number): number;
-export function __wbg_set_snake_size(a: number, b: number): void;
-export function snake_new(): number;
-export function snake_get_snake_body(a: number, b: number): void;
 export function __wbg_game_free(a: number): void;
 export function __wbg_get_game_is_running(a: number): number;
 export function __wbg_set_game_is_running(a: number, b: number): void;
@@ -30,6 +19,19 @@ export function __wbg_get_coord_x(a: number): number;
 export function __wbg_set_coord_x(a: number, b: number): void;
 export function __wbg_get_coord_y(a: number): number;
 export function __wbg_set_coord_y(a: number, b: number): void;
+export function __wbg_node_free(a: number): void;
+export function __wbg_get_node_coord(a: number): number;
+export function __wbg_set_node_coord(a: number, b: number): void;
+export function __wbg_get_node_direction(a: number): number;
+export function __wbg_set_node_direction(a: number, b: number): void;
+export function node_new(a: number, b: number, c: number): number;
+export function node_random(a: number): number;
+export function __wbg_snake_free(a: number): void;
+export function __wbg_get_snake_size(a: number): number;
+export function __wbg_set_snake_size(a: number, b: number): void;
+export function snake_new(): number;
+export function snake_grow_snake(a: number): void;
+export function snake_get_snake_body(a: number, b: number): void;
 export function __wbindgen_malloc(a: number, b: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;
 export const __wbindgen_export_2: WebAssembly.Table;
