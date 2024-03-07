@@ -54,7 +54,8 @@
                 <i class="fas fa-star text-yellow-500 mr-1"></i>
                 <span id="github-stars">0</span>
             </div>
-            <a href="#" class="mr-4 bg-black hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
+            <a href="https://github.com/Vilayat-Ali/WasmSlither"
+                class="mr-4 bg-black hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
                 <i class="fab fa-github mr-2"></i>
                 Github
             </a>
@@ -121,25 +122,10 @@
 
     <!-- Web Assembly Run-->
     <script type="module">
-        import init, { Game, Snake } from "./static/snake.js";
+        import init, { Game } from "./static/snake.js";
 
         async function run() {
             await init();
-
-            const snakey = new Snake();
-            snakey.grow_snake();
-            snakey.grow_snake();
-            snakey.grow_snake();
-            snakey.grow_snake();
-            snakey.grow_snake();
-
-            for (const node of snakey.get_snake_body()) {
-                console.log({
-                    x: node.coord.x,
-                    y: node.coord.y,
-                    direction: node.direction
-                })
-            }
 
             const game = new Game();
             game.play();

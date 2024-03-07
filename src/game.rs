@@ -1,4 +1,6 @@
 use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
+
 
 use crate::{food::Food, snake::Snake, COL_BOUND, ROW_BOUND};
 use web_sys::{console, HtmlElement};
@@ -47,7 +49,14 @@ impl Game {
         let window = web_sys::window().expect("Wndow not found");
 
         let game_loop = Closure::wrap(Box::new(|| {  
-                console::log_1(&"Hello World!".into());
+            console::log_1(&"Snake moving...".into());
+            // let window = web_sys::window().expect("Wndow not found");
+            // let document = window.document().unwrap();
+            // let snake_node_vec = self.snake.get_snake_body().clone();
+            // for node in snake_node_vec {
+            // let cell_element = document.get_element_by_id(&format!("cell-{}-{}", node.coord.x, node.coord.y)).unwrap().dyn_into::<HtmlElement>().unwrap();
+            // cell_element.set_class_name("bg-white");
+            // }
         }) as Box<dyn FnMut()>);
 
         // running game loop
