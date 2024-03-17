@@ -1,15 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
-export function __wbg_game_free(a: number): void;
-export function game_new(): number;
-export function game_play(a: number): void;
 export function __wbg_food_free(a: number): void;
 export function __wbg_get_food_x(a: number): number;
 export function __wbg_set_food_x(a: number, b: number): void;
 export function __wbg_get_food_y(a: number): number;
 export function __wbg_set_food_y(a: number, b: number): void;
 export function food_get_color(a: number, b: number): void;
+export function __wbg_game_free(a: number): void;
+export function game_new(): number;
+export function game_play(a: number): void;
 export function __wbg_coord_free(a: number): void;
 export function __wbg_get_coord_x(a: number): number;
 export function __wbg_set_coord_x(a: number, b: number): void;
@@ -31,7 +31,8 @@ export function snake_get_snake_body(a: number, b: number): void;
 export function __wbindgen_malloc(a: number, b: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;
 export const __wbindgen_export_2: WebAssembly.Table;
-export function wasm_bindgen__convert__closures__invoke0_mut__h2d831516dc2e7947(a: number, b: number): void;
+export function _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h75fe3f06a608e52f(a: number, b: number, c: number): void;
+export function _dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h64837940442244bd(a: number, b: number): void;
 export function __wbindgen_add_to_stack_pointer(a: number): number;
 export function __wbindgen_free(a: number, b: number, c: number): void;
 export function __wbindgen_exn_store(a: number): void;

@@ -1,10 +1,11 @@
-use std::borrow::BorrowMut;
+#![allow(dead_code)]
+
 use std::cell::RefCell;
 use std::rc::Rc;
 
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
-use web_sys::{console, HtmlElement};
+use web_sys::{console, HtmlElement, KeyboardEvent};
 
 use crate::Coord;
 use crate::{snake::Snake, food::Food, ROW_BOUND, COL_BOUND};
@@ -54,6 +55,21 @@ impl Game {
         let window = web_sys::window().expect("Failed to load WINDOW");
         let document = window.document().expect("Failed to fetch Document");
 
+        // controller
+        let control_loop = Closure::wrap(Box::new(move |e: KeyboardEvent| {
+            e.default_prevented();
+
+            match e.key_code() {
+                37 => console::log_1(&"ArrowLeft".into()),
+                38 => console::log_1(&"ArrowUp".into()),
+                39 => console::log_1(&"ArrowRight".into()),
+                40 => console::log_1(&"ArrowDown".into()),
+                32 => console::log_1(&"Space".into()),
+                _ => (),
+            }
+        }) as Box<dyn FnMut(KeyboardEvent)>);
+
+        // game loop
         let game_loop = Closure::wrap(Box::new(move || {
             let snake_instance = snake.borrow();
             let snake_vec = snake_instance.clone().get_snake_body().clone();
@@ -66,15 +82,20 @@ impl Game {
             }
         }) as Box<dyn FnMut()>);
 
-        // Run game loop
         let window = web_sys::window().expect("Window Object not found!");
-        window
-            .set_interval_with_callback_and_timeout_and_arguments_0(
+
+        // Run game loop
+        window.set_interval_with_callback_and_timeout_and_arguments_0(
                 game_loop.as_ref().unchecked_ref(),
                 TICK_RATE,
             )
             .expect("Failed to set gameloop");
+
+        // Run controller loop
+        window.add_event_listener_with_callback("keydown", control_loop.as_ref().unchecked_ref()).unwrap();
+
         game_loop.forget();
+        control_loop.forget();
     }
 
 }
