@@ -43,12 +43,6 @@ export class Game {
 /**
 */
   play(): void;
-/**
-*/
-  is_running: boolean;
-/**
-*/
-  score: number;
 }
 /**
 */
@@ -96,8 +90,6 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_game_free: (a: number) => void;
-  readonly __wbg_get_game_is_running: (a: number) => number;
-  readonly __wbg_set_game_is_running: (a: number, b: number) => void;
   readonly game_new: () => number;
   readonly game_play: (a: number) => void;
   readonly __wbg_food_free: (a: number) => void;
@@ -106,8 +98,6 @@ export interface InitOutput {
   readonly __wbg_get_food_y: (a: number) => number;
   readonly __wbg_set_food_y: (a: number, b: number) => void;
   readonly food_get_color: (a: number, b: number) => void;
-  readonly __wbg_set_game_score: (a: number, b: number) => void;
-  readonly __wbg_get_game_score: (a: number) => number;
   readonly __wbg_coord_free: (a: number) => void;
   readonly __wbg_get_coord_x: (a: number) => number;
   readonly __wbg_set_coord_x: (a: number, b: number) => void;

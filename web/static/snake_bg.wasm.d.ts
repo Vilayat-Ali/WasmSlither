@@ -2,8 +2,6 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export function __wbg_game_free(a: number): void;
-export function __wbg_get_game_is_running(a: number): number;
-export function __wbg_set_game_is_running(a: number, b: number): void;
 export function game_new(): number;
 export function game_play(a: number): void;
 export function __wbg_food_free(a: number): void;
@@ -12,8 +10,6 @@ export function __wbg_set_food_x(a: number, b: number): void;
 export function __wbg_get_food_y(a: number): number;
 export function __wbg_set_food_y(a: number, b: number): void;
 export function food_get_color(a: number, b: number): void;
-export function __wbg_set_game_score(a: number, b: number): void;
-export function __wbg_get_game_score(a: number): number;
 export function __wbg_coord_free(a: number): void;
 export function __wbg_get_coord_x(a: number): number;
 export function __wbg_set_coord_x(a: number, b: number): void;

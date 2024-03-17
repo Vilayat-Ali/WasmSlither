@@ -1,4 +1,5 @@
 use wasm_bindgen::prelude::*;
+use web_sys::console;
 use crate::{COL_BOUND, ROW_BOUND};
 
 use super::Coord;
@@ -97,6 +98,7 @@ impl Snake {
                         }
                     };
                     let new_node = Node::new(new_x, new_y, node.direction);
+                    console::log_1(&format!("New Node Appended:\n {:#?}", &new_node.coord).into());
                     node.next = Some(Box::new(new_node));
                     self.size += 1;
                     break;

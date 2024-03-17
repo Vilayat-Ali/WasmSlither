@@ -34,3 +34,36 @@ impl Coord {
         }
    }
 }
+
+use std::rc::Rc;
+use std::cell::RefCell;
+
+struct MyType {
+    value: i32,
+}
+
+impl MyType {
+    fn new(value: i32) -> Self {
+        MyType { value }
+    }
+
+    fn update(&mut self, new_value: i32) {
+        self.value = new_value;
+    }
+}
+
+fn main() {
+    let my_type = Rc::new(RefCell::new(MyType::new(5)));
+
+    // Clone the Rc to create a new reference
+    let my_type_clone = my_type.clone();
+
+    // Borrow the RefCell mutably
+    let mut my_type_instance = my_type.borrow_mut();
+
+    // Call a method on the struct
+    my_type_instance.update(10);
+
+    // Access the value inside the RefCell using dereference
+    println!("{}", my_type_clone.borrow().value); // Output: 10
+}
