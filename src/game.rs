@@ -60,7 +60,7 @@ impl Game {
             e.default_prevented();
 
             match e.key_code() {
-                37 => console::log_1(&"ArrowLeft".into()),
+                37 => console::log_1(&"ArrowLeft =>".into()),
                 38 => console::log_1(&"ArrowUp".into()),
                 39 => console::log_1(&"ArrowRight".into()),
                 40 => console::log_1(&"ArrowDown".into()),
